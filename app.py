@@ -3,6 +3,15 @@ from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
 import streamlit as st 
 from openai import OpenAI
+import os
+import streamlit as st
+
+# Get the absolute path to the directory containing the script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# List all files in the directory containing the script
+#directory_files = os.listdir(script_dir)
+#st.text("Files in directory: " + ", ".join(directory_files))
 
 
 
@@ -11,7 +20,8 @@ def predict_image(img):
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model = load_model("modelo_caras\keras_model.h5", compile=False)
+    model_path = os.path.join("modelo_caras", "keras_model.h5")
+    model = load_model(model_path, compile=False)
 
     # Load the labels
     class_names = open("modelo_caras\labels.txt", "r").readlines()
