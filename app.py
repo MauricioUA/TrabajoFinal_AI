@@ -10,8 +10,8 @@ import streamlit as st
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # List all files in the directory containing the script
-#directory_files = os.listdir(script_dir)
-#st.text("Files in directory: " + ", ".join(directory_files))
+directory_files = os.listdir(script_dir)
+st.text("Files in directory: " + ", ".join(directory_files))
 
 
 
@@ -20,11 +20,12 @@ def predict_image(img):
     np.set_printoptions(suppress=True)
 
     # Load the model
-    model_path = os.path.join("modelo_caras", "keras_model.h5")
+    model_path = os.path.join(script_dir, "modelo_caras", "keras_model.h5")
     model = load_model(model_path, compile=False)
 
     # Load the labels
-    class_names = open("modelo_caras\labels.txt", "r").readlines()
+    labels_path = os.path.join(script_dir, "modelo_caras", "labels.txt")
+    class_names = open(labels_path, "r").readlines()
 
     # Create the array of the right shape to feed into the keras model
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
