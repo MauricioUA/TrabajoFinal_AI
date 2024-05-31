@@ -1,2 +1,10 @@
-0 AI Faces
-1 Human Faces
+0 MST-E 1
+1 MST-E 2
+2 MST-E 3
+3 MST-E 4
+4 MST-E 5
+5 MST-E 6
+6 MST-E 7
+7 MST-E 8
+8 MST-E 9
+9 MST-E 10
