@@ -85,4 +85,4 @@ for product in products:
         st.number_input('Cantidad', min_value=1, max_value=10, value=1, key=product['name'])
         st.button('Agregar al pedido', key=product['name'] + '_button')
 
-# Ejecutar la aplicación con streamlit run nombre_del_archivo.py
+

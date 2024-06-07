@@ -86,23 +86,32 @@ if input_img is not None or camera_img is not None:
 
                 if label == "0 MST-E 1":
                     st.success("En base a tu tono de piel, te recomiendo utilizar nuestra base de maquillaje Porcelana. Ideal para pieles muy claras, esta base ofrece una cobertura impecable que ilumina y realza tu belleza natural sin dejar sensación pesada. ¡Estoy seguro de que te quedará muy bien!")
+                    st.button("Ir a Tienda")
                 elif label == "1 MST-E 2":
                     st.success("Para tu tono de piel claro, te sugiero probar nuestra base de maquillaje Marfil. Es perfecta para lograr un acabado suave y natural. Con una fórmula ligera y de larga duración, proporciona una cobertura uniforme que dejará tu piel con un aspecto luminoso. ¡Te verás increíble!")
+                    st.button("Ir a Tienda")
                 elif label == "2 MST-E 3":
                     st.success("Con tu tono de piel claro a medio, nuestra base de maquillaje Beige es una excelente elección. Su textura sedosa se funde perfectamente, proporcionando una cobertura natural que resalta tu resplandor. ¡Seguro que notarás la diferencia!")
+                    st.button("Ir a Tienda")                
                 elif label == "3 MST-E 4":
                     st.success("Para tu tono de piel medio claro, te recomiendo nuestra base de maquillaje Arena. Ofrece una cobertura uniforme que disimula imperfecciones y realza tu tono natural. Con una fórmula hidratante, tu piel lucirá fresca y radiante todo el día. ¡Destacarás tu belleza natural!")
+                    st.button("Ir a Tienda")
                 elif label == "4 MST-E 5":
                     st.success("Tu tono de piel medio se verá espectacular con nuestra base de maquillaje Beige Dorado. Su fórmula ligera y de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado radiante y uniforme. ¡Luce una piel perfecta sin esfuerzo!")
+                    st.button("Ir a Tienda")
                 elif label == "5 MST-E 6":
                     st.success("Para tu tono de piel medio oscuro, te sugiero nuestra base de maquillaje Caramelo. Diseñada para proporcionar una cobertura impecable, esta base hidrata y unifica tu piel, dejándola con un aspecto naturalmente bello y luminoso. ¡Te sentirás increíble cada día!")
+                    st.button("Ir a Tienda")
                 elif label == "6 MST-E 7":
                     st.success("Con tu tono de piel oscuro, nuestra base de maquillaje Almendra es la solución perfecta. Con una fórmula rica en hidratación, esta base proporciona un acabado suave y luminoso, destacando tu belleza única. ¡Sé la mejor versión de ti mismo!")
                 elif label == "7 MST-E 8":
                     st.success("Para tu tono de piel muy oscuro, te recomiendo nuestra base de maquillaje Cacao. Ofrece una cobertura impecable que unifica el tono de la piel mientras la hidrata profundamente. Con un acabado mate natural, tu piel lucirá radiante y sin imperfecciones. ¡Te verás espectacular!")
+                    st.button("Ir a Tienda")
                 elif label == "8 MST-E 9":
                     st.success("Tu tono de piel profundo se verá magnífico con nuestra base de maquillaje Espresso. Su fórmula de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado impecable y duradero. ¡Realza tu belleza con un tono que complementa tu piel perfectamente!")
+                    st.button("Ir a Tienda")
                 elif label == "9 MST-E 10":
                     st.success("Para tu tono de piel muy profundo, te sugiero nuestra base de maquillaje Ébano. Con una cobertura completa y un acabado mate, esta base unifica y resalta tu tono de piel de manera natural. Hidrata y protege, dejando tu piel con un aspecto saludable y radiante. ¡Siente la diferencia!")
+                    st.button("Ir a Tienda")
                 else:
                     st.warning("No se ha reconocido la etiqueta proporcionada.")
