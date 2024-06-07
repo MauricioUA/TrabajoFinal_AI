@@ -48,7 +48,7 @@ with col2:
         st.success(f"¡Gracias por tu compra! {quantity} unidad(es) de Maquillaje Marfil han sido añadidas a tu carrito.")
 
     # Enlace de regreso a la tienda
-    st.markdown("[Regresar a la Tienda](Tienda.py)")
+    st.markdown("[Regresar a la Tienda](Tienda)")
     
     # Divider para separación visual
     st.markdown("---")
