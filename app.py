@@ -52,7 +52,7 @@ st.markdown(
 )
 
 # Leer y codificar la imagen
-with open('Fotos/giftonos.gif', "rb") as f:
+with open('Fotos\giftonos.gif', "rb") as f:
     data = f.read()
     encoded = base64.b64encode(data)
 data = "data:image/png;base64," + encoded.decode("utf-8")
