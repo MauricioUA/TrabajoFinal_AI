@@ -224,7 +224,7 @@ if choice == "Muy Claro":
     with open('Fotos\MUY_CLARO.png.crdownload', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    data = "data:image/jpeg;base64," + encoded.decode("utf-8")
 
     from streamlit_card import card
 
