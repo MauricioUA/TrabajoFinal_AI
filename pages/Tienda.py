@@ -218,4 +218,32 @@ def cargar_y_mostrar_imagen_y_video(choice, image_path, video_url):
             encoded = base64.b64encode(data)
         data = f"data:image/jpeg;base64,{encoded.decode('utf-8')}"
         
-        res = card
+        res = card(
+            title=f"SKINLY - {choice}",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
+            }
+        )
+        
+        st.video(video_url)
+
+if choice == "Muy Claro":
+    st.header("Productos Muy Claros")
+    cargar_y_mostrar_imagen_y_video("Muy Claro", "Fotos/MuyClaro.jpg", "https://youtu.be/mM2pxt7vEQw")
+elif choice == "Claro":
+    st.header("Productos Claros")
+    cargar_y_mostrar_imagen_y_video("Claro", "Fotos/Claro.jpg", "https://youtu.be/mM2pxt7vEQw")
+elif choice == "Medio":
+    st.header("Productos Medios")
+    cargar_y_mostrar_imagen_y_video("Medio", "Fotos/Medio.jpg", "https://youtu.be/mM2pxt7vEQw")
+elif choice == "Oscuro":
+    st.header("Productos Oscuros")
+    cargar_y_mostrar_imagen_y_video("Oscuro", "Fotos/Oscuro.jpg", "https://youtu.be/mM2pxt7vEQw")
+elif choice == "Muy Oscuro":
+    st.header("Productos Muy Oscuros")
+    cargar_y_mostrar_imagen_y_video("Muy Oscuro", "Fotos/MuyOscuro.jpg", "https://youtu.be/mM2pxt7vEQw")
