@@ -5,7 +5,7 @@ icon = "🏠"
 
 # Pages after an `is_section = true` will be indented
 [[pages]]
-path = "pages/tiendita.py"
+path = "pages/Tienda.py"
 name = "Tienda"
 icon = "💄"
 

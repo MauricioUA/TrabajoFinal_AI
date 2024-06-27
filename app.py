@@ -4,57 +4,90 @@ from image_analysis import predict_image
 import random
 from st_pages import show_pages_from_config, add_page_title
 from streamlit_option_menu import option_menu
-
-st.set_page_config(page_title="Skinly - Tu maquillaje ideal")
-
-
-
-
-# Specify what pages should be shown in the sidebar, and what their titles and icons
-# should be
+import streamlit_shadcn_ui as ui
+from streamlit_extras.stoggle import stoggle
+from streamlit_card import card
+import base64
 
 show_pages_from_config()
 
+st.set_page_config(page_title="Skinly - Tu maquillaje ideal")
 
-
-# Hide the sidebar toggle button
+# Estilo CSS para el fondo negro y otros estilos personalizados
 st.markdown(
     """
-<style>
-    [data-testid="collapsedControl"] {
-        display: none;
-    }
-    .stFileUploader, .stCameraInput {
-        text-align: center;
-        font-size: 16px;
-        color: #ffb3da;
-    }
-    .stFileUploader div, .stCameraInput div {
-        font-size: 16px;
-        color: #ffb3da;
-    }
-    .st-success {
-        background-color: #000000 !important;
-        color: #ffffff !important;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-    }
-</style>
-""",
+    <style>
+        .stApp {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        [data-testid="collapsedControl"] {
+            display: none;
+        }
+        .stFileUploader, .stCameraInput {
+            text-align: center;
+            font-size: 16px;
+            color: #ffb3da;
+        }
+        .stFileUploader div, .stCameraInput div {
+            font-size: 16px;
+            color: #ffb3da;
+        }
+        .st-success {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .myCard {
+            background-color: #0e1117;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+    </style>
+    """,
     unsafe_allow_html=True,
 )
 
-# Add a custom header
-st.markdown("<h1 style='text-align: center; color: #ff66b2;'>Bienvenido a Skinly!</h1>", unsafe_allow_html=True)
-st.markdown("<h3 style='text-align: center; color: #ffa3d7;'>Encuentra el maquillaje perfecto para tu tono de piel</h3>", unsafe_allow_html=True)
+# Leer y codificar la imagen
+with open('Fotos/giftonos.gif', "rb") as f:
+    data = f.read()
+    encoded = base64.b64encode(data)
+data = "data:image/png;base64," + encoded.decode("utf-8")
+
+# Crear una tarjeta con la imagen codificada
+res = card(
+    title="SKINLY",
+    text="ENcuentra tu maquillaje ideal",
+    image=data,
+    styles={
+        "card": {
+            "width": "100%",  # La tarjeta usará el ancho de su contenedor
+            "height": "150px"  # Altura de la tarjeta
+        }
+    }
+)
+
+
 
 # Initialize session state for disabling camera
 if "disable_camera" not in st.session_state:
     st.session_state.disable_camera = False
 
-# Add an image uploader and camera input
-st.markdown("<h4 style='text-align: center; color: #ffb3da;'>Sube una imagen o toma una foto para empezar</h4>", unsafe_allow_html=True)
+# Card con la información
+st.markdown("""
+    <div class='myCard'>
+       <p>Usar Skinly es muy simple, solo sigue los siguientes pasos para obtener la mejor recomendación sobre tu maquillaje perfecto:</p>
+            <ol>
+                <li>Posa sin anteojos y sin maquillaje</li>
+                <li>Asegúrate que el pelo no tape tu cara</li>
+                <li>Comprueba tener buena iluminación</li>
+                <li>Toma la foto con una expresión neutra</li>
+            </ol>
+    </div>
+    """, unsafe_allow_html=True)
 
 input_img = st.file_uploader("", type=["jpeg", "jpg", "png"])
 if input_img is not None:
@@ -88,17 +121,16 @@ def process_image(image_file):
 
         # Mostrar mensaje aleatorio si la confianza es baja
         if confidence_score < 0.9:
-            st.success(confidence_score)
             st.warning(random.choice(frases_nueva_foto))
             return
 
         # Create a dictionary for recommendations
         recommendations = {
-            "0 Muy Claro": ("Porcelana", "Ideal para pieles muy claras, esta base ofrece una cobertura impecable que ilumina y realza tu belleza natural sin dejar sensación pesada. ¡Estoy seguro de que te quedará muy bien!", "Porcelana"),
-            "1 Claro": ("Marfil", "Es perfecta para lograr un acabado suave y natural. Con una fórmula ligera y de larga duración, proporciona una cobertura uniforme que dejará tu piel con un aspecto luminoso. ¡Te verás increíble!", "Marfil"),
-            "2 Medio": ("Beige", "Su textura sedosa se funde perfectamente, proporcionando una cobertura natural que resalta tu resplandor. ¡Seguro que notarás la diferencia!", "Tienda"),
-            "3 Oscuro": ("Arena", "Ofrece una cobertura uniforme que disimula imperfecciones y realza tu tono natural. Con una fórmula hidratante, tu piel lucirá fresca y radiante todo el día. ¡Destacarás tu belleza natural!", "Tienda"),
-            "4 Muy Oscuro": ("Beige Dorado", "Su fórmula ligera y de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado radiante y uniforme. ¡Luce una piel perfecta sin esfuerzo!", "Tienda"),
+            "0 Muy Claro": ("Muy Clara", "Ideal para pieles muy claras, esta base ofrece una cobertura impecable que ilumina y realza tu belleza natural sin dejar sensación pesada. ¡Estoy seguro de que te quedará muy bien!", "Tienda"),
+            "1 Claro": ("Clara", "Es perfecta para lograr un acabado suave y natural. Con una fórmula ligera y de larga duración, proporciona una cobertura uniforme que dejará tu piel con un aspecto luminoso. ¡Te verás increíble!", "Tienda"),
+            "2 Medio": ("Media", "Su textura sedosa se funde perfectamente, proporcionando una cobertura natural que resalta tu resplandor. ¡Seguro que notarás la diferencia!", "Tienda"),
+            "3 Oscuro": ("Oscura", "Ofrece una cobertura uniforme que disimula imperfecciones y realza tu tono natural. Con una fórmula hidratante, tu piel lucirá fresca y radiante todo el día. ¡Destacarás tu belleza natural!", "Tienda"),
+            "4 Muy Oscuro": ("Muy Oscura", "Su fórmula ligera y de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado radiante y uniforme. ¡Luce una piel perfecta sin esfuerzo!", "Tienda"),
         }
 
         if label in recommendations:
