@@ -1,46 +1,54 @@
 import base64
+import os
 import streamlit as st
 from streamlit_card import card
 
 def mostrar_producto(imagen, titulo, descripcion, precio, index):
-    with open(imagen, "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    if os.path.exists(imagen):
+        with open(imagen, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title=titulo,
-        text=descripcion + "\nPrecio: " + precio,
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title=titulo,
+            text=descripcion + "\nPrecio: " + precio,
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {imagen}")
 
 choice = st.selectbox("Selecciona un tono", ["Todos los tonos", "Muy Claro", "Claro", "Medio", "Oscuro", "Muy Oscuro"])
 
 index = 0
 
 if choice == "Todos los tonos":
-    with open('Fotos/Portada.jpeg', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    portada_path = 'Fotos/Portada.jpeg'
+    if os.path.exists(portada_path):
+        with open(portada_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="SKINLY",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="SKINLY",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {portada_path}")
 
     bases = [
         {
@@ -161,22 +169,26 @@ if choice == "Todos los tonos":
         index += 1
 
 if choice == "Muy Claro":
-    with open('Fotos/MUY_CLARO.png', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/jpeg;base64," + encoded.decode("utf-8")
+    muy_claro_path = 'Fotos/MUY_CLARO.png'
+    if os.path.exists(muy_claro_path):
+        with open(muy_claro_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="Muy Claro",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="Muy Claro",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {muy_claro_path}")
 
     muyclaros = [
         {
@@ -204,26 +216,27 @@ if choice == "Muy Claro":
         st.markdown("---")
         index += 1
 
-    VIDEO_URL = "https://www.youtube.com/watch?v=7PR1FxrrEhU&pp=ygUZZmFpciBza2luIG1ha2V1cCB0dXRvcmlhbA%3D%3D"
-    st.video(VIDEO_URL, format="video/mp4", start_time=0, loop=False, autoplay=True, muted=True)
-
 if choice == "Claro":
-    with open('Fotos/CLARO.png', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    claro_path = 'Fotos/CLARO.png'
+    if os.path.exists(claro_path):
+        with open(claro_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="Claro",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="Claro",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {claro_path}")
 
     claros = [
         {
@@ -252,22 +265,26 @@ if choice == "Claro":
         index += 1
 
 if choice == "Medio":
-    with open('Fotos/MEDIO.png', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    medio_path = 'Fotos/MEDIO.png'
+    if os.path.exists(medio_path):
+        with open(medio_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="Medio",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="Medio",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {medio_path}")
 
     medios = [
         {
@@ -296,22 +313,26 @@ if choice == "Medio":
         index += 1
 
 if choice == "Oscuro":
-    with open('Fotos/OSCURO.png', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    oscuro_path = 'Fotos/OSCURO.png'
+    if os.path.exists(oscuro_path):
+        with open(oscuro_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="Oscuro",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="Oscuro",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {oscuro_path}")
 
     oscuros = [
         {
@@ -340,22 +361,26 @@ if choice == "Oscuro":
         index += 1
 
 if choice == "Muy Oscuro":
-    with open('Fotos/MUY_OSCURO.png', "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data)
-    data = "data:image/png;base64," + encoded.decode("utf-8")
+    muy_oscuro_path = 'Fotos/MUY_OSCURO.png'
+    if os.path.exists(muy_oscuro_path):
+        with open(muy_oscuro_path, "rb") as f:
+            data = f.read()
+            encoded = base64.b64encode(data)
+        data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    res = card(
-        title="Muy Oscuro",
-        text="",
-        image=data,
-        styles={
-            "card": {
-                "width": "100%",
-                "height": "150px"
+        res = card(
+            title="Muy Oscuro",
+            text="",
+            image=data,
+            styles={
+                "card": {
+                    "width": "100%",
+                    "height": "150px"
+                }
             }
-        }
-    )
+        )
+    else:
+        st.error(f"No se encuentra la imagen: {muy_oscuro_path}")
 
     muyoscuros = [
         {
