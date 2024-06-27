@@ -9,3 +9,4 @@ streamlit-shadcn-ui
 streamlit-extras
 streamlit-card
 numpy
+image_analysis  # Asegúrate de que este paquete exista o reemplázalo con el nombre correcto

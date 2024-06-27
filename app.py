@@ -8,6 +8,7 @@ import streamlit_shadcn_ui as ui
 from streamlit_extras.stoggle import stoggle
 from streamlit_card import card
 import base64
+import os
 
 show_pages_from_config()
 
@@ -52,10 +53,14 @@ st.markdown(
 )
 
 # Leer y codificar la imagen
-with open('Fotos\Portada.jpeg', "rb") as f:
-    data = f.read()
-    encoded = base64.b64encode(data)
-data = "data:image/jpeg;base64," + encoded.decode("utf-8")
+image_path = 'Fotos/Portada.jpeg'
+if os.path.exists(image_path):
+    with open(image_path, "rb") as f:
+        data = f.read()
+        encoded = base64.b64encode(data)
+    data = "data:image/jpeg;base64," + encoded.decode("utf-8")
+else:
+    st.error("El archivo de imagen no se encuentra en la ruta especificada. Por favor, asegúrate de que el archivo 'Portada.jpeg' esté en la carpeta 'Fotos'.")
 
 # Crear una tarjeta con la imagen codificada
 res = card(
@@ -69,8 +74,6 @@ res = card(
         }
     }
 )
-
-
 
 # Initialize session state for disabling camera
 if "disable_camera" not in st.session_state:
