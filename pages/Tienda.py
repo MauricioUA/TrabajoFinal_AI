@@ -5,7 +5,8 @@ import os
 from st_pages import show_pages_from_config, add_page_title
 import streamlit as st
 import streamlit_shadcn_ui as ui
-
+from streamlit_card import card
+import base64
 
 
 
@@ -62,14 +63,13 @@ index = 0
 if choice == "Todos los tonos":
     #st.header('Bases')
 
-    import base64
+
 
     with open('Fotos\Portada.jpeg', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
     data = "data:image/png;base64," + encoded.decode("utf-8")
 
-    from streamlit_card import card
 
     res = card(
     title="SKINLY",
