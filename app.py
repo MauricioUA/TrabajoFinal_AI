@@ -1,103 +1,119 @@
-from keras.models import load_model  # TensorFlow is required for Keras to work
-from PIL import Image, ImageOps  # Install pillow instead of PIL
-import numpy as np
 import streamlit as st
-import os
+from PIL import Image
+from image_analysis import predict_image
+import random
+from st_pages import show_pages_from_config, add_page_title
+from streamlit_option_menu import option_menu
 
-# Get the absolute path to the directory containing the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
+st.set_page_config(page_title="Skinly - Tu maquillaje ideal")
 
-# List all files in the directory containing the script
-directory_files = os.listdir(script_dir)
-# st.text("Files in directory: " + ", ".join(directory_files))
 
-def predict_image(img):
-    # Disable scientific notation for clarity
-    np.set_printoptions(suppress=True)
 
-    # Load the model
-    model_path = os.path.join(script_dir, "modelo_caras", "keras_model.h5")
-    model = load_model(model_path, compile=False)
 
-    # Load the labels
-    labels_path = os.path.join(script_dir, "modelo_caras", "labels.txt")
-    class_names = open(labels_path, "r").readlines()
+# Specify what pages should be shown in the sidebar, and what their titles and icons
+# should be
 
-    # Create the array of the right shape to feed into the keras model
-    data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
+show_pages_from_config()
 
-    # Convert the image to RGB
-    image = img.convert("RGB")
 
-    # Resize and crop the image to 224x224
-    size = (224, 224)
-    image = ImageOps.fit(image, size, Image.Resampling.LANCZOS)
 
-    # Turn the image into a numpy array and normalize it
-    image_array = np.asarray(image)
-    normalized_image_array = (image_array.astype(np.float32) / 127.5) - 1
-
-    # Load the image into the array
-    data[0] = normalized_image_array
-
-    # Predict with the model
-    prediction = model.predict(data)
-    index = np.argmax(prediction)
-    class_name = class_names[index].strip()
-    confidence_score = prediction[0][index]
-
-    # Return prediction and confidence score
-    return {
-        "Class": class_name,
-        "Confidence Score": confidence_score,
+# Hide the sidebar toggle button
+st.markdown(
+    """
+<style>
+    [data-testid="collapsedControl"] {
+        display: none;
     }
+    .stFileUploader, .stCameraInput {
+        text-align: center;
+        font-size: 16px;
+        color: #ffb3da;
+    }
+    .stFileUploader div, .stCameraInput div {
+        font-size: 16px;
+        color: #ffb3da;
+    }
+    .st-success {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+    }
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
-# Streamlit App
-st.set_page_config(layout="wide")  # Permite que la App no sea centrada, sino en pantalla completa
+# Add a custom header
+st.markdown("<h1 style='text-align: center; color: #ff66b2;'>Bienvenido a Skinly!</h1>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center; color: #ffa3d7;'>Encuentra el maquillaje perfecto para tu tono de piel</h3>", unsafe_allow_html=True)
 
-st.title("Bienvenido a Skinly! El lugar donde te recomendamos el maquillaje perfecto para tu tono de piel!")
+# Initialize session state for disabling camera
+if "disable_camera" not in st.session_state:
+    st.session_state.disable_camera = False
 
-input_img = st.file_uploader("Ingresa una imagen para que podamos analizarla", type=["jpeg", "jpg", "png"])
-camera_img = st.camera_input("O toma una foto con tu cámara")
+# Add an image uploader and camera input
+st.markdown("<h4 style='text-align: center; color: #ffb3da;'>Sube una imagen o toma una foto para empezar</h4>", unsafe_allow_html=True)
 
-if input_img is not None or camera_img is not None:
-    if st.button("Encontrar Maquillaje"):
-        col1, col2 = st.columns([1, 1])
+input_img = st.file_uploader("", type=["jpeg", "jpg", "png"])
+if input_img is not None:
+    st.session_state.disable_camera = True
+else:
+    st.session_state.disable_camera = False
 
-        with col1:
-            st.info("Imagen Cargada:")
-            if input_img is not None:
-                st.image(input_img, use_column_width=True)
-                image_file = Image.open(input_img)
-            else:
-                st.image(camera_img, use_column_width=True)
-                image_file = Image.open(camera_img)
+if not st.session_state.disable_camera:
+    camera_img = st.camera_input("")
 
-        with col2:
-            st.info("Recomendación")
-            with st.spinner('Analizando imagen...'):
-                result = predict_image(image_file)
-                label = result["Class"]
-                confidence_score = result["Confidence Score"]
+# Process the image when uploaded or captured
+def process_image(image_file):
+    with st.spinner('Analizando imagen...'):
+        result = predict_image(image_file)
+        label = result["Class"]
+        confidence_score = result["Confidence Score"]
 
-                # Mostrar la etiqueta y el puntaje de confianza
-                #st.success(f"Etiqueta: {label}")
-                #st.success(f"Puntaje de confianza: {confidence_score:.2f}")
+        # Frases para solicitar una nueva foto
+        frases_nueva_foto = [
+            "Por favor, intenta tomar otra foto.",
+            "La calidad de la imagen no es suficiente. Por favor, toma otra foto.",
+            "Inténtalo de nuevo con una mejor iluminación.",
+            "La foto no es clara. Por favor, vuelve a intentarlo.",
+            "Necesitamos una foto más nítida. Intenta de nuevo.",
+            "La imagen no se pudo procesar correctamente. Intenta otra vez.",
+            "Por favor, asegúrate de que la cámara esté enfocada y toma otra foto.",
+            "La foto no es lo suficientemente clara. Intenta tomar otra.",
+            "Intenta capturar una imagen con mejor ángulo.",
+            "No se pudo analizar la imagen. Inténtalo de nuevo."
+        ]
 
-                if label == "0 Muy Claro":
-                    st.success("En base a tu tono de piel, te recomiendo utilizar nuestra base de maquillaje Porcelana. Ideal para pieles muy claras, esta base ofrece una cobertura impecable que ilumina y realza tu belleza natural sin dejar sensación pesada. ¡Estoy seguro de que te quedará muy bien!")
-                    st.markdown("[Ver Producto](Porcelana)")
-                elif label == "1 Claro":
-                    st.success("Para tu tono de piel claro, te sugiero probar nuestra base de maquillaje Marfil. Es perfecta para lograr un acabado suave y natural. Con una fórmula ligera y de larga duración, proporciona una cobertura uniforme que dejará tu piel con un aspecto luminoso. ¡Te verás increíble!")
-                    st.markdown("[Ver Producto](Marfil)")
-                elif label == "2 Medio":
-                    st.success("Con tu tono de piel claro a medio, nuestra base de maquillaje Beige es una excelente elección. Su textura sedosa se funde perfectamente, proporcionando una cobertura natural que resalta tu resplandor. ¡Seguro que notarás la diferencia!")
-                    st.markdown("[Ir a Tienda](Tienda)")                
-                elif label == "3 Oscuro":
-                    st.success("Para tu tono de piel medio claro, te recomiendo nuestra base de maquillaje Arena. Ofrece una cobertura uniforme que disimula imperfecciones y realza tu tono natural. Con una fórmula hidratante, tu piel lucirá fresca y radiante todo el día. ¡Destacarás tu belleza natural!")
-                    st.markdown("[Ir a Tienda](Tienda)")
-                elif label == "4 Muy Oscuro":
-                    st.success("Tu tono de piel medio se verá espectacular con nuestra base de maquillaje Beige Dorado. Su fórmula ligera y de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado radiante y uniforme. ¡Luce una piel perfecta sin esfuerzo!")
-                    st.markdown("[Ir a Tienda](Tienda)")
-                else:
-                    st.warning("No se ha reconocido la etiqueta proporcionada.")
+        # Mostrar mensaje aleatorio si la confianza es baja
+        if confidence_score < 0.9:
+            st.success(confidence_score)
+            st.warning(random.choice(frases_nueva_foto))
+            return
+
+        # Create a dictionary for recommendations
+        recommendations = {
+            "0 Muy Claro": ("Porcelana", "Ideal para pieles muy claras, esta base ofrece una cobertura impecable que ilumina y realza tu belleza natural sin dejar sensación pesada. ¡Estoy seguro de que te quedará muy bien!", "Porcelana"),
+            "1 Claro": ("Marfil", "Es perfecta para lograr un acabado suave y natural. Con una fórmula ligera y de larga duración, proporciona una cobertura uniforme que dejará tu piel con un aspecto luminoso. ¡Te verás increíble!", "Marfil"),
+            "2 Medio": ("Beige", "Su textura sedosa se funde perfectamente, proporcionando una cobertura natural que resalta tu resplandor. ¡Seguro que notarás la diferencia!", "Tienda"),
+            "3 Oscuro": ("Arena", "Ofrece una cobertura uniforme que disimula imperfecciones y realza tu tono natural. Con una fórmula hidratante, tu piel lucirá fresca y radiante todo el día. ¡Destacarás tu belleza natural!", "Tienda"),
+            "4 Muy Oscuro": ("Beige Dorado", "Su fórmula ligera y de alta cobertura se adapta perfectamente a tu piel, ofreciendo un acabado radiante y uniforme. ¡Luce una piel perfecta sin esfuerzo!", "Tienda"),
+        }
+
+        if label in recommendations:
+            product, description, link = recommendations[label]
+            st.markdown(
+                f"<div class='st-success'>En base a tu tono de piel, te recomiendo utilizar nuestra base de maquillaje <b>{product}</b>. {description}</div>",
+                unsafe_allow_html=True
+            )
+            if link:
+                st.markdown(f"[Ver Producto]({link})")
+        else:
+            st.warning("No se ha reconocido la etiqueta proporcionada.")
+
+# Automatically process the image once it's uploaded or captured
+if input_img is not None:
+    process_image(Image.open(input_img))
+elif 'camera_img' in locals() and camera_img is not None:
+    process_image(Image.open(camera_img))

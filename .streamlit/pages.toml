@@ -1,0 +1,16 @@
+[[pages]]
+path = "app.py"
+name = "Inicio"
+icon = "🏠"
+
+# Pages after an `is_section = true` will be indented
+[[pages]]
+path = "pages/tiendita.py"
+name = "Tienda"
+icon = "💄"
+
+[[pages]]
+path = "pages/FAQ.py"
+name = "FAQ"
+icon = "❓"
+

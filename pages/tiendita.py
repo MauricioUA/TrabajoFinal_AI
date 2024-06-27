@@ -2,6 +2,9 @@ from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
 import streamlit as st
 import os
+from st_pages import show_pages_from_config, add_page_title
+
+show_pages_from_config()
 
 # Inicializar el estado del carrito si no existe
 if 'carrito' not in st.session_state:
