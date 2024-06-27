@@ -52,7 +52,7 @@ st.markdown(
 )
 
 # Leer y codificar la imagen
-with open('Fotos\giftonos.gif', "rb") as f:
+with open('Fotos\Portada.jpeg', "rb") as f:
     data = f.read()
     encoded = base64.b64encode(data)
 data = "data:image/png;base64," + encoded.decode("utf-8")
@@ -60,7 +60,7 @@ data = "data:image/png;base64," + encoded.decode("utf-8")
 # Crear una tarjeta con la imagen codificada
 res = card(
     title="SKINLY",
-    text="ENcuentra tu maquillaje ideal",
+    text="Encuentra tu maquillaje ideal",
     image=data,
     styles={
         "card": {
