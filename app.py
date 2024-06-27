@@ -144,6 +144,15 @@ def process_image(image_file):
             )
             if link:
                 st.markdown(f"[Ver Producto]({link})")
+
+            # Añadir botones de "Me gusta" y "No me gusta"
+            col1, col2 = st.columns([1, 1])
+            with col1:
+                if st.button("Me gusta"):
+                    st.write("¡Gracias por tu feedback positivo!")
+            with col2:
+                if st.button("No me gusta"):
+                    st.write("Lo siento que no te haya gustado. ¡Intentemos con otra recomendación!")
         else:
             st.warning("No se ha reconocido la etiqueta proporcionada.")
 
