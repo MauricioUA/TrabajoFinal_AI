@@ -1,19 +1,13 @@
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
 import streamlit as st
 import os
 from st_pages import show_pages_from_config, add_page_title
 import streamlit as st
 import streamlit_shadcn_ui as ui
-from streamlit_card import card
-import base64
 
-# Función para verificar la existencia de archivos
-def verificar_archivo(ruta):
-    if not os.path.exists(ruta):
-        st.error(f"El archivo {ruta} no existe.")
-        return False
-    return True
+
+
 
 show_pages_from_config()
 
@@ -31,8 +25,7 @@ def mostrar_producto(imagen, titulo, descripcion, precio, index):
     col1, col2 = st.columns([1, 2])
     
     with col1:
-        if verificar_archivo(imagen):
-            st.image(imagen, use_column_width=True)
+        st.image(imagen, use_column_width=True)
     
     with col2:
         st.header(titulo)
@@ -61,6 +54,7 @@ st.header("Selecciona tu tono:")
 # Mostrar el carrito en la barra lateral
 mostrar_carrito()
 
+
 choice = ui.select(options=["Todos los tonos", "Muy Claro", "Claro", "Medio", "Oscuro", "Muy Oscuro"])
 
 index = 0
@@ -68,13 +62,14 @@ index = 0
 if choice == "Todos los tonos":
     #st.header('Bases')
 
+    import base64
 
-
-    with open('Fotos\Portada.jpeg', "rb") as f:
+    with open('Fotos\giftonos.gif', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
     data = "data:image/png;base64," + encoded.decode("utf-8")
 
+    from streamlit_card import card
 
     res = card(
     title="SKINLY",
@@ -229,7 +224,7 @@ if choice == "Muy Claro":
     with open('Fotos\MUY_CLARO.png.crdownload', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
-    data = "data:image/jpeg;base64," + encoded.decode("utf-8")
+    data = "data:image/png;base64," + encoded.decode("utf-8")
 
     from streamlit_card import card
 
