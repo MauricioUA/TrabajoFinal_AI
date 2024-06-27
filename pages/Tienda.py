@@ -7,6 +7,8 @@ import streamlit as st
 import streamlit_shadcn_ui as ui
 
 
+
+
 show_pages_from_config()
 
 # Inicializar el estado del carrito si no existe
@@ -84,31 +86,31 @@ if choice == "Todos los tonos":
     # Datos de los Bases
     bases = [
         {
-            "imagen": "Fotos\BASE MUY CLARA.png.crdownload",
+            "imagen": "Fotos\BASE_MUY_CLARA.png.crdownload",
             "titulo": "Base Muy Clara",
             "descripcion": "Logra un acabado impecable con nuestra Base Muy Clara, ideal para tonos de piel porcelana, ofreciendo cobertura total y un acabado natural.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\BASE CLARA.png.crdownload",
+            "imagen": "Fotos\BASE_CLARA.png.crdownload",
             "titulo": "Base Clara",
             "descripcion": "Nuestra Base Clara proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\BASE MEDIA.png.crdownload",
+            "imagen": "Fotos\BASE_MEDIA.png.crdownload",
             "titulo": "Base Media",
             "descripcion": "Descubre la perfección con nuestra Base Media, diseñada para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\BASE OSCURA.png.crdownload",
+            "imagen": "Fotos\BASE_OSCURA.png.crdownload",
             "titulo": "Base Oscura",
             "descripcion": "La Base Oscura se adapta perfectamente a tonos de piel oscuros, proporcionando una cobertura sin igual y un acabado mate impecable.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\BASE MUY OSCURA.png.crdownload",
+            "imagen": "Fotos\BASE_MUY_OSCURA.png.crdownload",
             "titulo": "Base Muy Oscura",
             "descripcion": "Nuestra Base Muy Oscura ofrece una cobertura completa para tonos de piel muy oscuros, asegurando un look natural y radiante.",
             "precio": "$100"
@@ -127,31 +129,31 @@ if choice == "Todos los tonos":
     # Datos de los Correctores
     correctores = [
         {
-            "imagen": "Fotos\CORRECTOR MUY CLARO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MUY_CLARO.png.crdownload",
             "titulo": "Corrector Muy Claro",
             "descripcion": "Oculta imperfecciones y ojeras con nuestro Corrector Muy Claro, perfecto para tonos de piel porcelana, dejando un acabado impecable.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\CORRECTOR CLARO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_CLARO.png.crdownload",
             "titulo": "Corrector Claro",
             "descripcion": "Nuestro Corrector Claro proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\CORRECTOR MEDIO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MEDIO.png.crdownload",
             "titulo": "Corrector Medio",
             "descripcion": "Descubre la perfección con nuestro Corrector Medio, diseñado para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\CORRECTOR OSCURO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_OSCURO.png.crdownload",
             "titulo": "Corrector Oscuro",
             "descripcion": "El Corrector Oscuro se adapta perfectamente a tonos de piel oscuros, proporcionando una cobertura sin igual y un acabado mate impecable.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\CORRECTOR MUY OSCURO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MUY_OSCURO.png.crdownload",
             "titulo": "Corrector Muy Oscuro",
             "descripcion": "Nuestro Corrector Muy Oscuro ofrece una cobertura completa para tonos de piel muy oscuros, asegurando un look natural y radiante.",
             "precio": "$150"
@@ -171,31 +173,31 @@ if choice == "Todos los tonos":
     # Datos de los Polvos
     polvos = [
         {
-            "imagen": "Fotos\POLVO MUY CLARO.png.crdownload",
+            "imagen": "Fotos\POLVO_MUY_CLARO.png.crdownload",
             "titulo": "Polvo Muy Claro",
             "descripcion": "Fija tu maquillaje con nuestro Polvo Muy Claro, diseñado para tonos de piel porcelana, ofreciendo un acabado mate y suave.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO CLARO.png.crdownload",
+            "imagen": "Fotos\POLVO_CLARO.png.crdownload",
             "titulo": "Polvo Claro",
             "descripcion": "El Polvo Claro proporciona una fijación perfecta y un acabado natural para pieles claras, manteniendo el maquillaje intacto todo el día.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO MEDIO.png.crdownload",
+            "imagen": "Fotos\POLVO_MEDIO.png.crdownload",
             "titulo": "Polvo Medio",
             "descripcion": "Nuestro Polvo Medio es ideal para tonos de piel medios, ofreciendo un acabado mate y control de brillo durante horas.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO OSCURO.png.crdownload",
+            "imagen": "Fotos\POLVO_OSCURO.png.crdownload",
             "titulo": "Polvo Oscuro",
             "descripcion": "Controla el brillo y fija tu maquillaje con nuestro Polvo Oscuro, perfecto para tonos de piel oscuros, proporcionando un acabado suave y uniforme.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO MUY OSCURO.png.crdownload",
+            "imagen": "Fotos\POLVO_MUY_OSCURO.png.crdownload",
             "titulo": "Polvo Muy Oscuro",
             "descripcion": "El Polvo Muy Oscuro fija el maquillaje y controla el brillo en tonos de piel muy oscuros, asegurando un look impecable y natural.",
             "precio": "$150"
@@ -219,7 +221,7 @@ if choice == "Muy Claro":
 
     import base64
 
-    with open('Fotos\MUY CLARO.png.crdownload', "rb") as f:
+    with open('Fotos\MUY_CLARO.png.crdownload', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
     data = "data:image/png;base64," + encoded.decode("utf-8")
@@ -242,19 +244,19 @@ if choice == "Muy Claro":
     # Datos de los Correctores
     muyclaros = [
         {
-            "imagen": "Fotos\BASE MUY CLARA.png.crdownload",
+            "imagen": "Fotos\BASE_MUY_CLARA.png.crdownload",
             "titulo": "Base Muy Clara",
             "descripcion": "Logra un acabado impecable con nuestra Base Muy Clara, ideal para tonos de piel porcelana, ofreciendo cobertura total y un acabado natural.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\CORRECTOR MUY CLARO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MUY_CLARO.png.crdownload",
             "titulo": "Corrector Muy Claro",
             "descripcion": "Oculta imperfecciones y ojeras con nuestro Corrector Muy Claro, perfecto para tonos de piel porcelana, dejando un acabado impecable.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO MUY CLARO.png.crdownload",
+            "imagen": "Fotos\POLVO_MUY_CLARO.png.crdownload",
             "titulo": "Polvo Muy Claro",
             "descripcion": "Fija tu maquillaje con nuestro Polvo Muy Claro, diseñado para tonos de piel porcelana, ofreciendo un acabado mate y suave.",
             "precio": "$150"
@@ -302,19 +304,19 @@ if choice == "Claro":
     # Datos de los Correctores
     claros = [
         {
-            "imagen": "Fotos\BASE CLARA.png.crdownload",
+            "imagen": "Fotos\BASE_CLARA.png.crdownload",
             "titulo": "Base Clara",
             "descripcion": "Nuestra Base Clara proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",            
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\CORRECTOR CLARO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_CLARO.png.crdownload",
             "titulo": "Corrector Claro",
             "descripcion": "El Corrector Claro cubre ojeras y manchas en pieles claras, ofreciendo un resultado natural y de larga duración.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO CLARO.png.crdownload",
+            "imagen": "Fotos\POLVO_CLARO.png.crdownload",
             "titulo": "Polvo Claro",
             "descripcion": "El Polvo Claro proporciona una fijación perfecta y un acabado natural para pieles claras, manteniendo el maquillaje intacto todo el día.",
             "precio": "$150"
@@ -364,19 +366,19 @@ if choice == "Medio":
     # Datos de los Correctores
     medios = [
         {
-            "imagen": "Fotos\BASE MEDIA.png.crdownload",
+            "imagen": "Fotos\BASE_MEDIA.png.crdownload",
             "titulo": "Base Media",
             "descripcion": "Descubre la perfección con nuestra Base Media, diseñada para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\CORRECTOR MEDIO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MEDIO.png.crdownload",
             "titulo": "Corrector Medio",
             "descripcion": "Nuestro Corrector Medio proporciona una cobertura perfecta para imperfecciones en tonos de piel medios, asegurando un look fresco y luminoso.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO MEDIO.png.crdownload",
+            "imagen": "Fotos\POLVO_MEDIO.png.crdownload",
             "titulo": "Polvo Medio",
             "descripcion": "Nuestro Polvo Medio es ideal para tonos de piel medios, ofreciendo un acabado mate y control de brillo durante horas",
             "precio": "$150"
@@ -428,19 +430,19 @@ if choice == "Oscuro":
     # Datos de los Correctores
     oscuros = [
         {
-            "imagen": "Fotos\BASE OSCURA.png.crdownload",
+            "imagen": "Fotos\BASE_OSCURA.png.crdownload",
             "titulo": "Base Oscura",
             "descripcion": "La Base Oscura se adapta perfectamente a tonos de piel oscuros, proporcionando una cobertura sin igual y un acabado mate impecable.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\CORRECTOR OSCURO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_OSCURO.png.crdownload",
             "titulo": "Corrector Oscuro",
             "descripcion": "Disimula imperfecciones con nuestro Corrector Oscuro, ideal para tonos de piel oscuros, ofreciendo una cobertura suave y natural.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO OSCURO.png.crdownload",
+            "imagen": "Fotos\POLVO_OSCURO.png.crdownload",
             "titulo": "Polvo Oscuro",
             "descripcion": "Controla el brillo y fija tu maquillaje con nuestro Polvo Oscuro, perfecto para tonos de piel oscuros, proporcionando un acabado suave y uniforme.",
             "precio": "$150"
@@ -465,7 +467,7 @@ if choice == "Muy Oscuro":
 
     import base64
 
-    with open('Fotos\MUY OSCURO.png.crdownload', "rb") as f:
+    with open('Fotos\MUY_OSCURO.png.crdownload', "rb") as f:
         data = f.read()
         encoded = base64.b64encode(data)
     data = "data:image/png;base64," + encoded.decode("utf-8")
@@ -487,19 +489,19 @@ if choice == "Muy Oscuro":
     # Datos de los Correctores
     muyoscuros = [
         {
-            "imagen": "Fotos\BASE MUY OSCURA.png.crdownload",
+            "imagen": "Fotos\BASE_MUY_OSCURA.png.crdownload",
             "titulo": "Base Muy Oscura",
             "descripcion": "Nuestra Base Muy Oscura ofrece una cobertura completa para tonos de piel muy oscuros, asegurando un look natural y radiante.",
             "precio": "$100"
         },
         {
-            "imagen": "Fotos\CORRECTOR MUY OSCURO.png.crdownload",
+            "imagen": "Fotos\CORRECTOR_MUY_OSCURO.png.crdownload",
             "titulo": "Corrector Muy Oscuro",
             "descripcion": "El Corrector Muy Oscuro es perfecto para ocultar ojeras y manchas en tonos de piel muy oscuros, proporcionando un acabado impecable.",
             "precio": "$150"
         },
         {
-            "imagen": "Fotos\POLVO MUY OSCURO.png.crdownload",
+            "imagen": "Fotos\POLVO_MUY_OSCURO.png.crdownload",
             "titulo": "Polvo Muy Oscuro",
             "descripcion": "El Polvo Muy Oscuro fija el maquillaje y controla el brillo en tonos de piel muy oscuros, asegurando un look impecable y natural.",
             "precio": "$150"
