@@ -1,14 +1,11 @@
 keras
-tensorflow==2.13 
+tensorflow
 pandas
 streamlit
-
-streamlit==1.12.2  # o la versión más reciente compatible
-Pillow==9.2.0  # Asegúrate de verificar la compatibilidad de la versión
-st-pages==0.1.0  # o la versión correcta si hay alguna específica
-streamlit-option-menu==0.3.2  # o la versión más reciente compatible
-streamlit-shadcn-ui==0.0.4  # o la versión correcta si hay alguna específica
-streamlit-extras==0.1.0  # o la versión correcta si hay alguna específica
-streamlit-card==0.1.0  # o la versión correcta si hay alguna específica
-
+Pillow
+st-pages
+streamlit-option-menu
+streamlit-shadcn-ui
+streamlit-extras
+streamlit-card
 numpy
