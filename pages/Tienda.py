@@ -29,6 +29,7 @@ def mostrar_producto(imagen, titulo, descripcion, precio, index):
         st.header(titulo)
         st.write(descripcion)
         st.subheader(f"Precio: {precio}")
+        # Proporciona una clave única para cada botón usando el índice
         if st.button(f'Agregar {titulo} al carrito', on_click=agregar_al_carrito, args=({"titulo": titulo, "precio": precio},), key=f"btn_{index}"):
             st.experimental_rerun()
 
@@ -56,98 +57,6 @@ choice = ui.select(options=["Todos los tonos", "Muy Claro", "Claro", "Medio", "O
 index = 0
 
 productos = {
-    "Todos los tonos": [
-        {
-            "imagen": "Fotos/BASE_MUY_CLARA.png",
-            "titulo": "Base Muy Clara",
-            "descripcion": "Logra un acabado impecable con nuestra Base Muy Clara, ideal para tonos de piel porcelana, ofreciendo cobertura total y un acabado natural.",
-            "precio": "$100"
-        },
-        {
-            "imagen": "Fotos/BASE_CLARA.png",
-            "titulo": "Base Clara",
-            "descripcion": "Nuestra Base Clara proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",
-            "precio": "$100"
-        },
-        {
-            "imagen": "Fotos/BASE_MEDIA.png",
-            "titulo": "Base Media",
-            "descripcion": "Descubre la perfección con nuestra Base Media, diseñada para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
-            "precio": "$100"
-        },
-        {
-            "imagen": "Fotos/BASE_OSCURA.png",
-            "titulo": "Base Oscura",
-            "descripcion": "La Base Oscura se adapta perfectamente a tonos de piel oscuros, proporcionando una cobertura sin igual y un acabado mate impecable.",
-            "precio": "$100"
-        },
-        {
-            "imagen": "Fotos/BASE_MUY_OSCURA.png",
-            "titulo": "Base Muy Oscura",
-            "descripcion": "Nuestra Base Muy Oscura ofrece una cobertura completa para tonos de piel muy oscuros, asegurando un look natural y radiante.",
-            "precio": "$100"
-        },
-        {
-            "imagen": "Fotos/CORRECTOR_MUY_CLARO.png",
-            "titulo": "Corrector Muy Claro",
-            "descripcion": "Oculta imperfecciones y ojeras con nuestro Corrector Muy Claro, perfecto para tonos de piel porcelana, dejando un acabado impecable.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/CORRECTOR_CLARO.png",
-            "titulo": "Corrector Claro",
-            "descripcion": "Nuestro Corrector Claro proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/CORRECTOR_MEDIO.png",
-            "titulo": "Corrector Medio",
-            "descripcion": "Descubre la perfección con nuestro Corrector Medio, diseñado para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/CORRECTOR_OSCURO.png",
-            "titulo": "Corrector Oscuro",
-            "descripcion": "El Corrector Oscuro se adapta perfectamente a tonos de piel oscuros, proporcionando una cobertura sin igual y un acabado mate impecable.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/CORRECTOR_MUY_OSCURO.png",
-            "titulo": "Corrector Muy Oscuro",
-            "descripcion": "Nuestro Corrector Muy Oscuro ofrece una cobertura completa para tonos de piel muy oscuros, asegurando un look natural y radiante.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/POLVO_MUY_CLARO.png",
-            "titulo": "Polvo Muy Claro",
-            "descripcion": "Fija tu maquillaje con nuestro Polvo Muy Claro, diseñado para tonos de piel porcelana, ofreciendo un acabado mate y suave.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/POLVO_CLARO.png",
-            "titulo": "Polvo Claro",
-            "descripcion": "El Polvo Claro proporciona una fijación perfecta y un acabado natural para pieles claras, manteniendo el maquillaje intacto todo el día.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/POLVO_MEDIO.png",
-            "titulo": "Polvo Medio",
-            "descripcion": "Nuestro Polvo Medio es ideal para tonos de piel medios, ofreciendo un acabado mate y control de brillo durante horas.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/POLVO_OSCURO.png",
-            "titulo": "Polvo Oscuro",
-            "descripcion": "Controla el brillo y fija tu maquillaje con nuestro Polvo Oscuro, perfecto para tonos de piel oscuros, proporcionando un acabado suave y uniforme.",
-            "precio": "$150"
-        },
-        {
-            "imagen": "Fotos/POLVO_MUY_OSCURO.png",
-            "titulo": "Polvo Muy Oscuro",
-            "descripcion": "El Polvo Muy Oscuro fija el maquillaje y controla el brillo en tonos de piel muy oscuros, asegurando un look impecable y natural.",
-            "precio": "$150"
-        }
-    ],
     "Muy Claro": [
         {
             "imagen": "Fotos/BASE_MUY_CLARA.png",
@@ -178,7 +87,7 @@ productos = {
         {
             "imagen": "Fotos/CORRECTOR_CLARO.png",
             "titulo": "Corrector Claro",
-            "descripcion": "Nuestro Corrector Claro proporciona una cobertura uniforme y un acabado radiante para pieles claras, manteniendo la frescura durante todo el día.",
+            "descripcion": "Nuestro Corrector Claro cubre ojeras y manchas en pieles claras, ofreciendo un resultado natural y de larga duración.",
             "precio": "$150"
         },
         {
@@ -198,7 +107,7 @@ productos = {
         {
             "imagen": "Fotos/CORRECTOR_MEDIO.png",
             "titulo": "Corrector Medio",
-            "descripcion": "Descubre la perfección con nuestro Corrector Medio, diseñado para tonos de piel medios, ofreciendo una textura suave y cobertura duradera.",
+            "descripcion": "Nuestro Corrector Medio proporciona una cobertura perfecta para imperfecciones en tonos de piel medios, asegurando un look fresco y luminoso.",
             "precio": "$150"
         },
         {
@@ -250,6 +159,48 @@ productos = {
     ]
 }
 
-for producto in productos[choice]:
-    mostrar_producto(producto["imagen"], producto["titulo"], producto["descripcion"], producto["precio"], index)
-    index += 1
+videos = {
+    "Muy Claro": "https://www.youtube.com/watch?v=7PR1FxrrEhU&pp=ygUZZmFpciBza2luIG1ha2V1cCB0dXRvcmlhbA%3D%3D",
+    "Claro": "https://www.youtube.com/watch?v=XRNnWbaPv9Q&pp=ygUZZmFpciBza2luIG1ha2V1cCB0dXRvcmlhbA%3D%3D",
+    "Medio": "https://www.youtube.com/watch?v=W0Wcaqrt94I&pp=ygUabWVkaXVtc2tpbiBtYWtldXAgdHV0b3JpYWw%3D",
+    "Oscuro": "https://www.youtube.com/watch?v=3ASGtEc5un0&pp=ygUZZGFyayBza2luIG1ha2V1cCB0dXRvcmlhbA%3D%3D",
+    "Muy Oscuro": "https://www.youtube.com/watch?v=pgcrU-V2oTg&pp=ygUgcmVhbGx5IGRhcmsgc2tpbiBtYWtldXAgdHV0b3JpYWw%3D"
+}
+
+if choice == "Todos los tonos":
+    # Código para mostrar todos los tonos
+    st.header('Bases')
+    bases = productos["Muy Claro"] + productos["Claro"] + productos["Medio"] + productos["Oscuro"] + productos["Muy Oscuro"]
+
+    for base in bases:
+        mostrar_producto(base["imagen"], base["titulo"], base["descripcion"], base["precio"], index)
+        st.markdown("---")  # Separador entre productos
+        index += 1
+    
+    st.header('Correctores')
+    correctores = productos["Muy Claro"] + productos["Claro"] + productos["Medio"] + productos["Oscuro"] + productos["Muy Oscuro"]
+
+    for corrector in correctores:
+        mostrar_producto(corrector["imagen"], corrector["titulo"], corrector["descripcion"], corrector["precio"], index)
+        st.markdown("---")  # Separador entre productos
+        index += 1
+    
+    st.header('Polvos')
+    polvos = productos["Muy Claro"] + productos["Claro"] + productos["Medio"] + productos["Oscuro"] + productos["Muy Oscuro"]
+
+    for polvo in polvos:
+        mostrar_producto(polvo["imagen"], polvo["titulo"], polvo["descripcion"], polvo["precio"], index)
+        st.markdown("---")  # Separador entre productos
+        index += 1
+
+else:
+    # Mostrar productos específicos basados en el tono seleccionado
+    for producto in productos[choice]:
+        mostrar_producto(producto["imagen"], producto["titulo"], producto["descripcion"], producto["precio"], index)
+        st.markdown("---")  # Separador entre productos
+        index += 1
+
+    # Mostrar el video correspondiente al tono seleccionado
+    st.header('Tutorial')
+    video_url = videos[choice]
+    st.video(video_url)
